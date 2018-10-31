@@ -2,6 +2,7 @@ var http = require('http');
 var wakeonlan = require('./wake_on_lan');
 var url = require("url");
 var ip = require('./ipvalidation');
+var pv = require('./portvalidation');
 
 // Handle POST requests
 var POSTHandle = function (req, data, callback) {
@@ -29,9 +30,9 @@ var WOLHandle = function (reqParameters, callback) {
     }
 
     let options = {};
-    (reqParameters.address) && (ip.validateIP(reqParameters.address)) && (options.address = reqParameters.address);
+    (reqParameters.address) && ip.validateIP(reqParameters.address) && (options.address = reqParameters.address);
     (!isNaN(reqParameters.num_packets)) && (+reqParameters.num_packets > 0) && (options.num_packets = +reqParameters.num_packets);
-    (!isNaN(reqParameters.port)) && (+reqParameters.port > 0) && (+reqParameters.port < 65536) && (options.port = +reqParameters.port);
+    (!isNaN(reqParameters.port)) && pv.validatePort(+reqParameters.port) && (options.port = +reqParameters.port);
     (!isNaN(reqParameters.interval)) && (+reqParameters.interval > 0) && (options.interval = +reqParameters.interval);
 
     wakeonlan.wake(macAddress, options, function (error) {

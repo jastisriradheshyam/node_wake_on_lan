@@ -1,0 +1,7 @@
+
+{
+    "validPort" : ["9","7"],
+    "invalidPort" : [],
+    "minPort" : "1000",
+    "maxPort" : "1200"
+}
