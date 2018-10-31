@@ -1,8 +1,8 @@
-var http = require('http');
-var wakeonlan = require('./wake_on_lan');
-var url = require("url");
-var ip = require('./ipvalidation');
-var pv = require('./portvalidation');
+var http = require('http')
+    , wakeonlan = require('./wake_on_lan')
+    , url = require("url")
+    , ip = require('./ipvalidation')
+    , pv = require('./portvalidation');
 
 // Handle POST requests
 var POSTHandle = function (req, data, callback) {
