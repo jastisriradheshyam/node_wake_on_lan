@@ -85,6 +85,38 @@ wake 20:DE:20:DE:20:DE
 wake -a 192.168.1.255 20-DE-20-DE-20-DE
 wake --num_packets 10 --interval 50 -p 9 20DE20DE20DE
 ````
+## Server Utility
+
+```
+PORT=5000 node wolserver
+```
+
+Server functionality can be accessed by both GET and POST request. Request variables are same in options section above [Options](#options).  
+Server has 
+- basic MAC address validation
+- basic IP validation for IPv4 and Ipv6 addresses
+- basic natural number validation on interval and num_packets
+- range based and specific values based port validation
+
+MAC address is mandatory and return a error response MAC address missing if wrong or no MAC address.  
+Default values of other variables will be utilized if (not passed) or (passed and not validated).
+
+### GET Request Example
+
+```
+localhost:5000?macAddress=70%3A5A%3A0F%3A26%3A37%3A9A&address=192%2E168%2E2%2E225&port=7&interval=200&num_packets=4
+```
+### POST Request Example
+
+```
+{
+	"macAddress":"70:5A:0F:26:37:9A",
+	"address":"192.168.2.255",
+	"port":"7",
+	"interval":"200",
+	"num_packets":"4"
+}
+```
 
 ## Windows Notes
 
@@ -100,6 +132,7 @@ Use [`os.networkInterfaces()`](https://nodejs.org/api/os.html#os_os_networkinter
 
 * Jann Horn [@thejh](http://github.com/thejh)
 * mh-cbon [@mh-cbon](http://github.com/mh-cbon)
+* Jasti Sri Radhe Shyam [@jastisriradheshyam](http://github.com/jastisriradheshyam)
 
 ## License (MIT)
 
