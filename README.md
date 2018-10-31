@@ -91,7 +91,8 @@ wake --num_packets 10 --interval 50 -p 9 20DE20DE20DE
 PORT=5000 node wolserver
 ```
 
-Server functionality can be accessed by both GET and POST request. Request variables are same in options section above [Options](#options).  
+Server functionality can be accessed by both GET and POST request. Request variables are same as in [Options](#options) section above.  
+
 Server has 
 - basic MAC address validation
 - basic IP validation for IPv4 and Ipv6 addresses
