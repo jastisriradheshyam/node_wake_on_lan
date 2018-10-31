@@ -6,14 +6,22 @@ var http = require('http')
 
 // Handle POST requests
 var POSTHandle = function (req, data, callback) {
-    let reqParameters = JSON.parse(data);
-    WOLHandle(reqParameters, callback);
+    try {
+        let reqParameters = JSON.parse(data);
+        WOLHandle(reqParameters, callback);
+    } catch (error) {
+        callback("Wrong JSON Input ", error);
+    }
 };
 
 // Handle GET requests
 var GETHandle = function (req, callback) {
-    let urlParameters = url.parse(req.url, true);
-    WOLHandle(urlParameters.query, callback);
+    try {
+        let urlParameters = url.parse(req.url, true);
+        WOLHandle(urlParameters.query, callback);
+    } catch (error) {
+        callback("Wrong query format ", error);
+    }
 };
 
 // Handling WOL requests
