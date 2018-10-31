@@ -26,13 +26,17 @@ var regexIPv6 = new RegExp(regexStringIPv6, flags);
 var regexIPv4 = new RegExp(regexStringIPv4, flags);
 
 exports.validateIP = function (ip) {
-    return regexIPv4.test(ip) || regexIPv6.test(ip);
+    regexIPv4.lastIndex = 0;
+    regexIPv6.lastIndex = 0;
+    return (regexIPv4.test(ip) || regexIPv6.test(ip));
 };
 
 exports.validateIPv4 = function (ip) {
+    regexIPv4.lastIndex = 0;
     return regexIPv4.test(ip);
 }
 
 exports.validateIPv6 = function (ip) {
+    regexIPv6.lastIndex = 0;
     return regexIPv6.test(ip);
 }
